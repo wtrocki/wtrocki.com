@@ -1,6 +1,6 @@
 # main text of home
-name: Wojciech Trocki
-bio: Open Source Developer, Teacher, Conference speaker
+name: Wojtek Trocki
+bio: Open Source Developer, Teacher and Conference speaker
 
 # twitter summary info
 description: A blog about open source software
@@ -31,7 +31,7 @@ analytics-google: 'UA-134496091-1'
 # if you don't want comments in your posts, leave categories empty
 disqus:
   shortname: mydisqus # enter this from your disqus account
-  categories: [] # only show disqus for posts that have these categories
+  categories: [blog, open] # only show disqus for posts that have these categories
 
 # if you don't have any of social below, comment the line
 #facebook: myfacebook

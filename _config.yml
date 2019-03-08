@@ -1,9 +1,12 @@
 # main text of home
 name: Wojtek Trocki
-bio: 
+bio: |
+    Building Open Source Software for
+    Developers</br>
+    Mobile and Developer Tools at Red Hat
 
 # twitter summary info
-description: A blog about open source software
+description: Open source software
 
 # if it's an external image, update below for true
 # better with square images

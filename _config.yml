@@ -1,12 +1,12 @@
 # main text of home
 name: Wojtek Trocki
-bio: |
-    Building Open Source Software for
-    Developers</br>
-    Mobile and Developer Tools at Red Hat
+bio1: Building Open Source Software for </br>Developers and Servers
+bio2: Mobile and Developer Tools at</br> Red Hat
+bio3: Teacher, Author, Conference Speaker
+bio4: Evangelist for &#x3C;TypeScript&#x3C;GraphQL&#x3E;
 
 # twitter summary info
-description: Open source software
+description: wtrocki.com - open source tools and frameworks
 
 # if it's an external image, update below for true
 # better with square images
@@ -37,23 +37,11 @@ disqus:
   categories: [blog, open] # only show disqus for posts that have these categories
 
 # if you don't have any of social below, comment the line
-#facebook: myfacebook
 twitter: wojtroken
-# google: mygoogle
 instagram: pantommie
-# pinterest: mypinterest
-# linkedin: mylinkedin
-# youtube: myyoutube
-# spotify: myspotify
+linkedin: wojciech-t-39574526
 github: wtrocki
-# gitlab: mygitlab
-# lastfm: mylastfm
-# stackoverflow: 7044681/mystackoverflow
-# quora: userquora
-# reddit: username
 medium: wtr
-# vimeo: myvimeo
-# lanyrd: mylanyrd
 email: wtrocki@gmail.com
 
 # do you want a larger site? change the option below
@@ -62,8 +50,8 @@ email: wtrocki@gmail.com
 width: normal
 
 # if you don't need pagination, comment the *paginate* configs below
-# paginate: 5
-# paginate_path: "blog/:num/"
+paginate: 5
+paginate_path: "blog/:num/"
 
 # if you don't need projects, comment the *projects* configs below
 projects: false

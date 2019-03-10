@@ -7,20 +7,40 @@
 {% if showHeader == true %}
     <header class="header-home {% if site.animation %}animated{% endif %}">
         {% if site.about %}
-            <a class="link" href="{{ site.url }}/about">
-                <img class="selfie" alt="{{ site.name }}" src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" />
-            </a>
+        <a class="link" href="{{ site.url }}/about">
+            <img class="selfie" alt="{{ site.name }}"
+                src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" />
+        </a>
         {% else %}
-            <span class="link">
-                <img class="selfie" alt="{{ site.name }}" src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" />
-            </span>
+        <span class="link">
+            <img class="selfie" alt="{{ site.name }}"
+                src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" />
+        </span>
         {% endif %}
-
         <h1 class="title">{{ site.name }}</h1>
-        <h2 class="description">{{ site.bio }}</h2>
-
+        <!-- Typed implementation -->
+        <div id="typed-strings">
+            <p>{{ site.bio1 }}</p>
+            <p>{{ site.bio2 }}</p>
+            <p>{{ site.bio3 }}</p>
+            <p>{{ site.bio4 }}</p>
+        </div>
+        <h2  class="description" id="typed" style="height: 50px;"></h2>
         {% include social-links.html %}
     </header>
 {% endif %}
 
 {% include nav.html %}
+
+<!-- Typed Integration -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+<script>
+    var typed = new Typed('#typed', {
+        fadeOut: true,
+        typeSpeed: 40,
+        fadeOutDelay: 1000,
+        loop: true,
+        showCursor: false,
+        stringsElement: '#typed-strings'
+    });
+</script>

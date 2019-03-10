@@ -1,7 +1,7 @@
 # main text of home
 name: Wojtek Trocki
 bio1: Building Open Source Software <br/>for Developers and Servers
-bio2: Mobile and Developer Tools at</br> Red Hat
+bio2: Mobile and Developer Tools at</br> <span style="color:#820000"> Red Hat </span>
 bio3: Teacher, Author and Conference Speaker
 bio4: TypeScript&#x3C;GraphQL&#x3E; Evangelist
 

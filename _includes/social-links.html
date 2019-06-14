@@ -116,6 +116,16 @@
     </a>
     {% endif %}
 
+
+    {% if site.devto %}
+    <a class="link" data-title="dev.to/{{ site.devto }}" href="https://dev.to/{{ site.devto }}"
+        target="_blank">
+        <svg class="icon icon-devto">
+            <use xlink:href="#icon-devto"></use>
+        </svg>
+    </a>
+    {% endif %}
+
     {% if site.instagram %}
     <a class="link" data-title="instagram.com/{{ site.instagram }}" href="http://instagram.com/{{ site.instagram }}"
         target="_blank">

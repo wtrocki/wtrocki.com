@@ -171,9 +171,9 @@ Reviewing a pull request or document is not simply reading the sequence of files
 A better review workflow lets the reviewer reshape the information before evaluating it: bring the intent, expected outcome, constraints, risks, and open decisions to the front by grouping related changes and separating blockers from questions or preferences. Formatting and content is not cosmetic.
 It changes how quickly the reviewer can find the important information and how accurately they can judge the work.
 
-This is where a tool such as Plannotator becomes useful. It supports an active review process in which the reviewer can annotate the relevant object, reorganize attention around the important questions, and leave feedback that the author can process directly.
+This is where a tool such as [Plannotator](https://plannotator.ai/) becomes useful. It supports an active review process in which the reviewer can annotate the relevant object, reorganize attention around the important questions, and leave feedback that the author can process directly.
 
-In a weekly workflow, Plannotator can provide that review surface. [KeyClaude](https://github.com/wtrocki/keyclaude) integrates with Plannotator to open and annotate data files such as weekly notes and backlogs. The repository documents commands for reviewing the current weekly note, the backlog, and a work log, as well as a specific week's note. The [KeyClaude documentation](https://github.com/wtrocki/keyclaude) describes the integration as browser-based annotation of data files.
+In a weekly workflow, Plannotator can provide that review surface. [KeyClaude](https://github.com/wtrocki/keyclaude) integrates with [Plannotator](https://plannotator.ai/) to open and annotate data files such as weekly notes and backlogs. The repository documents commands for reviewing the current weekly note, the backlog, and a work log, as well as a specific week's note. The [KeyClaude documentation](https://github.com/wtrocki/keyclaude) describes the integration as browser-based annotation of data files.
 
 The important idea is broader than the tool: turn planning and review into explicit objects.
 
@@ -189,7 +189,7 @@ The same pattern works for a weekly plan. Instead of discussing priorities acros
 
 The artifact becomes a shared coordination surface.
 
-## KeyClaude as a small weekly planning layer
+## KeyClaude with Plannotator as a small weekly planning layer
 
 The ideas in this post are implemented in [KeyClaude](https://github.com/wtrocki/keyclaude), rather than being only a theoretical workflow. Its current core provides the building blocks described here: create a weekly note, maintain a later queue, and open those planning objects for review and annotation. The implementation is intentionally narrow, but it is enough to turn weekly planning, protected focus, and reviewable work into a repeatable engineering practice.
 
@@ -198,7 +198,7 @@ The [KeyClaude repository](https://github.com/wtrocki/keyclaude) describes the t
 - A Monday action that creates a weekly note.
 - A Friday action that reviews the note.
 - A later action for capturing work that should not interrupt the current plan.
-- Commands that open the weekly note or backlog in Plannotator for annotation.
+- Commands that open the weekly note or backlog in [Plannotator](https://plannotator.ai/) for annotation.
 
 That is enough to demonstrate the architecture:
 
@@ -235,6 +235,6 @@ It has inputs: goals, requests, dependencies, and new information. It has a work
 
 The system becomes more powerful when it includes other people's work. Review windows, design feedback, pairing, and clear decisions are not interruptions to productivity. They are part of how an engineer increases the amount of useful work a team can complete.
 
-[KeyClaude](https://github.com/wtrocki/keyclaude) is one practical implementation of weekly planning, bridging keyboard-first weekly notes, a later queue, and reviewable planning objects opened through Plannotator UI. The tool is not the point. The point is reducing the friction between intention, action, and feedback.
+[KeyClaude](https://github.com/wtrocki/keyclaude) is one practical implementation of weekly planning, bridging keyboard-first weekly notes, a later queue, and reviewable planning objects opened through [Plannotator](https://plannotator.ai/) UI. The tool is not the point. The point is reducing the friction between intention, action, and feedback.
 
 Then extend the same discipline to the work of others. The best weekly planning system does not merely help one engineer stay organized. It helps a whole group make decisions faster, review changes with more care, and keep important work moving.

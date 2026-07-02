@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = (await getCollection('blog')).filter((p) => !p.data.draft);
+  const tagSet = new Set<string>();
+  for (const post of posts) {
+    for (const tag of post.data.tags ?? []) {
+      tagSet.add(tag);
+    }
+  }
+  return [...tagSet].map((tag) => ({ params: { tag } }));
+}
+
+const { tag } = Astro.params;
+const allPosts = (await getCollection('blog')).filter((p) => !p.data.draft);
+const posts = allPosts
+  .filter((post) => !post.data.draft)
+  .filter((post) => (post.data.tags ?? []).includes(tag))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title={`Posts tagged "${tag}"`} description={`Blog posts tagged with ${tag}.`}>
+  <section style="max-width: 48rem; margin: 0 auto; padding: 3rem 2rem 6rem;">
+    <h1 style="font-size: 2rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.5rem;">
+      <span style="color: #666;">Posts tagged</span> "{tag}"
+    </h1>
+    <p style="color: #666; font-size: 1rem; margin-bottom: 2.5rem;">{posts.length} post{posts.length !== 1 ? 's' : ''}</p>
+    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+      {posts.map((post) => (
+        <a
+          href={`/blog/${post.id}`}
+          style="display: block; padding: 1.5rem; border: 1px solid #e5e7eb; border-radius: 0.75rem; background: #fff; transition: border-color 0.15s;"
+        >
+          <h2 style="font-weight: 600; font-size: 1.125rem; margin-bottom: 0.375rem;">{post.data.title}</h2>
+          <p style="font-size: 0.9375rem; color: #666; line-height: 1.5; margin-bottom: 0.5rem;">{post.data.description}</p>
+          <time style="font-size: 0.8125rem; color: #999;">
+            {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </time>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

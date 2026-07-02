@@ -1,0 +1,49 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import SEO from '../components/SEO.astro';
+export interface Props {
+  title: string;
+  description?: string;
+  date: Date;
+  tags?: string[];
+  image?: string;
+  slug?: string;
+}
+const { title, description, date, tags = [], image, slug } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <SEO
+    title={title}
+    description={description ?? 'Blog post by Wojciech Trocki.'}
+    image={image}
+    type="article"
+    slug={slug}
+    date={date}
+    tags={tags}
+    slot="head"
+  />
+  <article style="max-width: 48rem; margin: 0 auto; padding: 3rem 2rem 6rem;">
+    <time style="font-size: 0.875rem; color: #888; display: block; margin-bottom: 0.75rem;">
+      {date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+    </time>
+    <h1 style="font-size: 2rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1.5rem;">{title}</h1>
+    {
+      tags.length > 0 && (
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem;">
+          {tags.map((tag) => (
+            <a href={`/tags/${tag}`} style="display: inline-block; padding: 0.25rem 0.75rem; border: 1px solid #e5e7eb; border-radius: 9999px; font-size: 0.8125rem; color: #6b7280; background: #f9fafb; text-decoration: none; transition: border-color 0.15s;">
+              #{tag}
+            </a>
+          ))}
+        </div>
+      )
+    }
+    <div style="font-size: 1.0625rem; line-height: 1.75; color: #333;">
+      <slot />
+    </div>
+    <aside style="margin-top: 2rem; padding: 1rem 1.25rem; border-left: 3px solid #f59e0b; background: #fffbeb; border-radius: 0 0.5rem 0.5rem 0; font-size: 0.9375rem; color: #92400e; line-height: 1.6;">
+      The views expressed here are my own and do not reflect the views, opinions, or positions of my current or former employers.
+    </aside>
+  </article>
+</BaseLayout>

@@ -1,0 +1,63 @@
+---
+import type { MarkdownHeading } from 'astro';
+export interface Props {
+  headings: MarkdownHeading[];
+}
+const { headings } = Astro.props;
+const h2Headings = headings.filter((h) => h.depth === 2);
+---
+
+{ h2Headings.length > 0 && (
+  <details class="toc" open>
+    <summary class="toc-summary">Chapters</summary>
+    <nav class="toc-list">
+      <ol>
+        {h2Headings.map((heading) => (
+          <li>
+            <a href={`#${heading.slug}`}>{heading.text}</a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  </details>
+)}
+
+<style>
+  .toc {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 0.75rem;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .toc-summary {
+    color: #94a3b8;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    user-select: none;
+  }
+  .toc-summary::marker {
+    color: #64748b;
+    font-size: 0.75rem;
+  }
+  .toc-list ol {
+    list-style: decimal;
+    margin: 0.75rem 0 0 0;
+    padding-left: 1.25rem;
+  }
+  .toc-list li {
+    margin-bottom: 0.375rem;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+  .toc-list a {
+    color: #93c5fd;
+    text-decoration: none;
+  }
+  .toc-list a:hover {
+    text-decoration: underline;
+  }
+</style>

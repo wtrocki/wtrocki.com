@@ -1,6 +1,8 @@
 ---
+import type { MarkdownHeading } from 'astro';
 import BaseLayout from './BaseLayout.astro';
 import SEO from '../components/SEO.astro';
+import TableOfContents from '../components/TableOfContents.astro';
 export interface Props {
   title: string;
   description?: string;
@@ -8,8 +10,10 @@ export interface Props {
   tags?: string[];
   image?: string;
   slug?: string;
+  headings?: MarkdownHeading[];
+  readTime?: number;
 }
-const { title, description, date, tags = [], image, slug } = Astro.props;
+const { title, description, date, tags = [], image, slug, headings = [], readTime } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -24,9 +28,10 @@ const { title, description, date, tags = [], image, slug } = Astro.props;
     slot="head"
   />
   <article style="max-width: 48rem; margin: 0 auto; padding: 3rem 2rem 6rem;">
-    <time style="font-size: 0.875rem; color: #888; display: block; margin-bottom: 0.75rem;">
-      {date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-    </time>
+    <div style="font-size: 0.875rem; color: #888; display: block; margin-bottom: 0.75rem;">
+      <time>{date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+      {readTime !== undefined && <span style="margin-left: 0.75rem;">&middot; {readTime} min read</span>}
+    </div>
     <h1 style="font-size: 2rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1.5rem;">{title}</h1>
     {
       tags.length > 0 && (
@@ -39,11 +44,66 @@ const { title, description, date, tags = [], image, slug } = Astro.props;
         </div>
       )
     }
-    <div style="font-size: 1.0625rem; line-height: 1.75; color: #333;">
+    <TableOfContents headings={headings} />
+    <div style="background: #0f172a; border: 1px solid #1e293b; border-radius: 0.75rem; padding: 2rem; font-size: 1.0625rem; line-height: 1.75; color: #e2e8f0;" class="blog-content">
       <slot />
     </div>
     <aside style="margin-top: 2rem; padding: 1rem 1.25rem; border-left: 3px solid #f59e0b; background: #fffbeb; border-radius: 0 0.5rem 0.5rem 0; font-size: 0.9375rem; color: #92400e; line-height: 1.6;">
       The views expressed here are my own and do not reflect the views, opinions, or positions of my current or former employers.
     </aside>
+    <div style="margin-top: 3rem; border-top: 1px solid #1e293b; padding-top: 2rem;">
+      <script src="https://giscus.app/client.js"
+              data-repo="wtrocki/wtrocki.com"
+              data-repo-id="MDEwOlJlcG9zaXRvcnkxNzA1ODE4MjQ="
+              data-category="Announcements"
+              data-category-id="DIC_kwDOCirfQM4DC21h"
+              data-mapping="pathname"
+              data-strict="1"
+              data-reactions-enabled="1"
+              data-emit-metadata="0"
+              data-input-position="bottom"
+              data-theme="catppuccin_macchiato"
+              data-lang="en"
+              data-loading="lazy"
+              crossorigin="anonymous"
+              async>
+      </script>
+    </div>
   </article>
 </BaseLayout>
+
+<style>
+  :global(.blog-content h1), :global(.blog-content h2), :global(.blog-content h3), :global(.blog-content h4) {
+    color: #f1f5f9;
+  }
+  :global(.blog-content img) {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+    border-radius: 0.5rem;
+  }
+  :global(.blog-content a) {
+    color: #93c5fd;
+    text-decoration: underline;
+  }
+  :global(.blog-content pre) {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    font-size: 0.875rem;
+  }
+  :global(.blog-content code) {
+    font-size: 0.875em;
+    background: #1e293b;
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+  }
+  :global(.blog-content pre code) {
+    background: none;
+    padding: 0;
+  }
+</style>

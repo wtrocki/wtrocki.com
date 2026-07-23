@@ -4,7 +4,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const posts = (await getCollection('blog'))
   .filter((p) => !p.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
 ---
 
 <BaseLayout title="Home">
@@ -16,7 +17,7 @@ const posts = (await getCollection('blog'))
           Wojciech Trocki
         </h1>
         <p style="font-size: 1.125rem; color: #94a3b8; max-width: 36rem; line-height: 1.7; margin-bottom: 1.5rem;">
-          Product Engineer focused on AI, APIs, and middleware. Principal Engineer at <strong style="color: #34d399;">MongoDB</strong> building identity, traffic shaping, and API governance at scale. Previously led mobile backend teams at Red Hat. OpenAPI &amp; GraphQL spec expert, AsyncAPI contributor, and builder of AI-augmented developer tooling.
+          Product Engineer focused on AI, APIs, and middleware. Software Engineer at <strong style="color: #34d399;">MongoDB</strong> building identity, traffic shaping, and API governance at scale. Previously led mobile backend teams at Red Hat. OpenAPI &amp; GraphQL spec expert and builder of AI-augmented developer tooling.
         </p>
         <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
           <a href="https://github.com/wtrocki" style="display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.5rem 1.25rem; border: 1px solid #334155; border-radius: 9999px; font-size: 0.875rem; font-weight: 500; color: #cbd5e1; text-decoration: none; transition: background 0.15s, border-color 0.15s; background: rgba(30, 41, 59, 0.6); backdrop-filter: blur(4px);">
@@ -31,7 +32,6 @@ const posts = (await getCollection('blog'))
             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             X
           </a>
-          <a href="https://dev.to/wtrocki" style="padding: 0.5rem 1.25rem; border: 1px solid #334155; border-radius: 9999px; font-size: 0.875rem; font-weight: 500; color: #cbd5e1; text-decoration: none; transition: background 0.15s, border-color 0.15s; background: rgba(30, 41, 59, 0.6); backdrop-filter: blur(4px);">Dev.to</a>
           <a href="https://medium.com/@wtr" style="padding: 0.5rem 1.25rem; border: 1px solid #334155; border-radius: 9999px; font-size: 0.875rem; font-weight: 500; color: #cbd5e1; text-decoration: none; transition: background 0.15s, border-color 0.15s; background: rgba(30, 41, 59, 0.6); backdrop-filter: blur(4px);">Medium</a>
           <a href="mailto:wojciech@wtrocki.com" style="padding: 0.5rem 1.25rem; border: 1px solid #334155; border-radius: 9999px; font-size: 0.875rem; font-weight: 500; color: #cbd5e1; text-decoration: none; transition: background 0.15s, border-color 0.15s; background: rgba(30, 41, 59, 0.6); backdrop-filter: blur(4px);">Email</a>
           <a href="https://leaddev.com/community/wojtek-trocki" style="padding: 0.5rem 1.25rem; border: 1px solid #334155; border-radius: 9999px; font-size: 0.875rem; font-weight: 500; color: #cbd5e1; text-decoration: none; transition: background 0.15s, border-color 0.15s; background: rgba(30, 41, 59, 0.6); backdrop-filter: blur(4px);">LeadDev</a>

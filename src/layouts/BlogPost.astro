@@ -39,7 +39,7 @@ const { title, description, date, tags = [], image, slug } = Astro.props;
         </div>
       )
     }
-    <div style="font-size: 1.0625rem; line-height: 1.75; color: #333;">
+    <div style="background: #0f172a; border: 1px solid #1e293b; border-radius: 0.75rem; padding: 2rem; font-size: 1.0625rem; line-height: 1.75; color: #e2e8f0;" class="blog-content">
       <slot />
     </div>
     <aside style="margin-top: 2rem; padding: 1rem 1.25rem; border-left: 3px solid #f59e0b; background: #fffbeb; border-radius: 0 0.5rem 0.5rem 0; font-size: 0.9375rem; color: #92400e; line-height: 1.6;">
@@ -47,3 +47,39 @@ const { title, description, date, tags = [], image, slug } = Astro.props;
     </aside>
   </article>
 </BaseLayout>
+
+<style>
+  :global(.blog-content h1), :global(.blog-content h2), :global(.blog-content h3), :global(.blog-content h4) {
+    color: #f1f5f9;
+  }
+  :global(.blog-content img) {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+    border-radius: 0.5rem;
+  }
+  :global(.blog-content a) {
+    color: #93c5fd;
+    text-decoration: underline;
+  }
+  :global(.blog-content pre) {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    font-size: 0.875rem;
+  }
+  :global(.blog-content code) {
+    font-size: 0.875em;
+    background: #1e293b;
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+  }
+  :global(.blog-content pre code) {
+    background: none;
+    padding: 0;
+  }
+</style>

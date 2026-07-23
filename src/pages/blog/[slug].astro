@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props as { post: CollectionEntry<'blog'> };
-const showContent = !post.data.draft && (post.rendered?.html ?? '').trim().length > 0;
+const showContent = (post.rendered?.html ?? '').trim().length > 0;
 ---
 
 {
@@ -42,10 +42,10 @@ const showContent = !post.data.draft && (post.rendered?.html ?? '').trim().lengt
         slot="head"
       />
       <article style="max-width: 48rem; margin: 0 auto; padding: 3rem 2rem 6rem;">
-        <time style="font-size: 0.875rem; color: #888; display: block; margin-bottom: 0.75rem;">
+        <time style="font-size: 0.875rem; color: #94a3b8; display: block; margin-bottom: 0.75rem;">
           {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
         </time>
-        <h1 style="font-size: 2rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1.5rem;">{post.data.title}</h1>
+        <h1 style="font-size: 2rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1.5rem; color: #f1f5f9;">{post.data.title}</h1>
         {
           (post.data.tags ?? []).length > 0 && (
             <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem;">

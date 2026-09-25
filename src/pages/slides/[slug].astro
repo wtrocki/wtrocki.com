@@ -1,0 +1,39 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const slideDecks = (await getCollection('slides')).filter((s) => !s.data.draft);
+  return slideDecks.map((deck) => ({ params: { slug: deck.id } }));
+}
+
+const { slug } = Astro.params;
+const deck = await getEntry('slides', slug);
+if (!deck) return Astro.redirect('/slides');
+---
+
+<BaseLayout
+  title={deck.data.title}
+  description={deck.data.description ?? 'Slide deck presentation.'}
+>
+  <section style="max-width: 80rem; margin: 0 auto; padding: 1rem 1rem 3rem;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+      <a href="/slides" style="color: #94a3b8; text-decoration: none; font-size: 0.875rem; transition: color 0.15s;">
+        ← Back to slides
+      </a>
+      <time style="font-size: 0.8125rem; color: #64748b;">
+        {deck.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+      </time>
+    </div>
+    <h1 style="font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.5rem;">{deck.data.title}</h1>
+    {deck.data.description && (
+      <p style="color: #94a3b8; font-size: 1rem; margin-bottom: 1.5rem;">{deck.data.description}</p>
+    )}
+    <iframe
+      src={`/slides/${deck.data.htmlFile}`}
+      style="width: 100%; aspect-ratio: 16 / 9; border: 1px solid #1e293b; border-radius: 0.75rem; background: #fff;"
+      allow="fullscreen"
+      title={deck.data.title}
+    ></iframe>
+  </section>
+</BaseLayout>
